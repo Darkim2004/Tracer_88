@@ -6,7 +6,7 @@
 
 #define MEMORY_SIZE (1024*1024)    /* maximum addressable memory is 1MiB */
 
-char memory[MEMORY_SIZE];
+extern char memory[MEMORY_SIZE];
 
 typedef int16_t word;           /* type word must be 16 bits */
 typedef int16_t adr;            /* unsigned 16-bit quantity */
@@ -27,7 +27,7 @@ typedef union {
     word rw[8];
 } REG;
 
-REG r;
+extern REG r;
 
 // 8-bit General purpose registers
 #define AL 0
@@ -151,27 +151,28 @@ REG r;
 #define TO_DISK 1
 
 /* Variables used by I/O. */
-int ttystat;
-int clkinterval;
 
-reg EA, RA, EOP, ROP;
-int ovf, dirf, intf, signf, zerof, cf; /* flag bits */
-char *pcx;                             /* pcx = &m[ (cs<<4) + pc] */
-char *pcx_save; /* pcx saved here at instruction start */
-char *xapc;
-char *eapc, *rapc;
-word *rapw; /* eapw is unusable since it might be odd */
-word *stkp; /* scratch variable used by PUSH and POP */
-int mask;
+extern int ttystat;
+extern int clkinterval;
 
-adr cs, ds, ss, es; /* contents of segment registers */
-adr xs, dsx, ssx;
-long cs16; /* cs16 = 16*cs  (= cs<<4) */
+extern reg EA, RA, EOP, ROP;
+extern int ovf, dirf, intf, signf, zerof, cf; /* flag bits */
+extern char *pcx;                             /* pcx = &m[ (cs<<4) + pc] */
+extern char *pcx_save; /* pcx saved here at instruction start */
+extern char *xapc;
+extern char *eapc, *rapc;
+extern word *rapw; /* eapw is unusable since it might be odd */
+extern word *stkp; /* scratch variable used by PUSH and POP */
+extern int mask;
 
-unsigned timer, ticks, nextint, ints_pending;
-long realtime; /* measured in mach instr (5 microsec each) */
+extern adr cs, ds, ss, es; /* contents of segment registers */
+extern adr xs, dsx, ssx;
+extern long cs16; /* cs16 = 16*cs  (= cs<<4) */
 
-struct intstruct {
+extern unsigned timer, ticks, nextint, ints_pending;
+extern long realtime; /* measured in mach instr (5 microsec each) */
+
+extern struct intstruct {
     long int_time;  /* time of next interrupt (in mach instrs) */
     int int_status; /* status information */
     int int_vector;
@@ -179,21 +180,20 @@ struct intstruct {
 
 #define ENABLED 01
 
-long l, l1, l2;        /* scratch variables used for setting carry */
-short x, y, z;         /* used in lazy condition code evaluation */
-unchr xc, yc, zc;      /* ditto */
-int operand;
-int ccvalid; /* ditto */
-int anything;          /* nonzero if any dumping or tracing on */
-int whendump;          /* controls dumping */
-int whatdump;          /* controls dumping */
-long xx;               /* scratch variable used for mem checking */
-unchr stopvlag, dumpt; /* ew dumping vlag and saved t */
-
-
-int traceflag, instrcount, codelength; // procdepth(), breakpt(),
+extern long l, l1, l2;        /* scratch variables used for setting carry */
+extern short x, y, z;         /* used in lazy condition code evaluation */
+extern unchr xc, yc, zc;      /* ditto */
+extern int operand;
+extern int ccvalid; /* ditto */
+extern int anything;          /* nonzero if any dumping or tracing on */
+extern int whendump;          /* controls dumping */
+extern int whatdump;          /* controls dumping */
+extern long xx;               /* scratch variable used for mem checking */
+extern unchr stopvlag, dumpt; /* ew dumping vlag and saved t */
+ 
+extern int traceflag, instrcount, codelength; // procdepth(), breakpt(),
 extern char errbuf[];
-
-void interp( void );
+ 
+extern void interp( void );
 
 #endif /* _88_H */

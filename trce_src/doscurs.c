@@ -4,7 +4,7 @@
 #include "prototype.h"
 
 char nwindow[24][81];
-char window[24][81];
+extern char window[24][81];
 
 int clearscreen( void ) {
     printf("\e[2J");

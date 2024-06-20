@@ -3,7 +3,7 @@ CC = gcc
 
 SUF = o   # suffix of files produced with $(CC) -c
 
-CFLAGS = -ggdb -std=c99 -Wall #-fsanitize=address -O1 -fno-omit-frame-pointer
+CFLAGS = -std=c99 -Wall # -ggdb -fsanitize=address -O1 -fno-omit-frame-pointer
 
 CSRC = \
     comm3.c         \
@@ -42,8 +42,8 @@ COMM = \
 all: as88
 
 as88: $(COBJ) as.$(SUF)
-	$(CC) $(COBJ) as.$(SUF) -o as88; \
-	cp as88 ../exercises/as88; cp as88 ../examples/as88
+	$(CC) $(COBJ) as.$(SUF) -o as88;\
+	cp as88 ../exercises/as88; cp as88 ../examples/as88; cp as88 ../bin/as88
 
 # as.c:	as.y
 # 	yacc $(YFLAGS) as.y && mv y.tab.c as.c
