@@ -12,7 +12,7 @@ Run `./asinstall.sh` to build _both_ the assembler and tracer.
 
 To only build the assembler or the tracer, `cd` into the respective source folder and run `make`.
 
-=========
+
 Tracer_88
 =========
 
